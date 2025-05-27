@@ -117,9 +117,14 @@ const SolanaWalletDashboard = () => {
         {/* Header */}
         <div className="header">
           <h1 className="header-title">
-            Stalk your frens on Solana (╭ರ_•́)
+            Stalk your frens on Solana 
           </h1>
-          <p className="header-subtitle">Check their bags</p>
+          <div className="alucard-gif">
+            <img 
+              src="https://media1.tenor.com/m/CKXAi_IRPpcAAAAC/alucard-approves.gif"
+              className="gif-image" alt="Alucard approves"
+            />
+          </div>
         </div>
 
         {/* Search Section */}

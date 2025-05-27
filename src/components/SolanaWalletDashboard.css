@@ -93,12 +93,25 @@
   font-family: 'Nosifer', 'Georgia', serif;
 }
 
-.header-subtitle {
-  font-family: 'Eater', 'Georgia', serif;
-  font-size: 1.25rem;
-  opacity: 0.9;
-  color: #dc2626;
-  font-weight: 500;
+/* Add this to your CSS file */
+.alucard-gif {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.gif-image {
+  max-width: 300px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+  border: 2px solid rgba(220, 38, 38, 0.3);
+  transition: all 0.3s ease;
+}
+
+.gif-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
 }
 
 .search-container {
