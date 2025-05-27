@@ -1,0 +1,564 @@
+/* src/components/SolanaWalletDashboard.css */
+
+@keyframes gradientShift {
+  0%, 100% { 
+    background-position: 0% 50%; 
+  }
+  50% { 
+    background-position: 100% 50%; 
+  }
+}
+
+@keyframes spin {
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://img.freepik.com/premium-photo/black-white-image-lot-eyes-with-lot-eyes-generative-ai_1034068-60542.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  /* Add a dark overlay to make text more readable */
+  background-color: rgba(0, 0, 0, 0.4);
+  background-blend-mode: overlay;
+}
+
+.animated-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(139, 92, 246, 0.1) 0%, 
+    rgba(236, 72, 153, 0.1) 25%, 
+    rgba(59, 130, 246, 0.1) 50%, 
+    rgba(16, 185, 129, 0.1) 75%, 
+    rgba(245, 158, 11, 0.1) 100%);
+  animation: gradientShift 20s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
+
+.main-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  color: white;
+}
+
+.header-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  background: linear-gradient(to right, white, #f8f9fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+.search-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 2px solid #e5e7eb;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.search-button {
+  padding: 16px 32px;
+  background: linear-gradient(to right, #8b5cf6, #ec4899);
+  color: white;
+  font-weight: 600;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.6);
+}
+
+.search-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 48px;
+}
+
+.spinner {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+.loading-text {
+  color: white;
+  font-size: 1.25rem;
+}
+
+.error-container {
+  background: rgba(239, 68, 68, 0.2);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fecaca;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 32px;
+}
+
+.error-title {
+  font-weight: bold;
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+}
+
+.error-subtitle {
+  font-size: 0.875rem;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+.results-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.wallet-info {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: linear-gradient(to right, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+  border-radius: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.wallet-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.wallet-address {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  color: #d1d5db;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  border-radius: 12px;
+  word-break: break-all;
+}
+
+.wallet-stats {
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 16px;
+}
+
+.balances-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.balance-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-top: 4px solid #8b5cf6;
+}
+
+.balance-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.15);
+}
+
+.token-header {
+  margin-bottom: 16px;
+}
+
+.token-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.token-symbol {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.token-amounts {
+  margin-bottom: 16px;
+}
+
+.token-amount {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #8b5cf6;
+  margin-bottom: 8px;
+}
+
+.token-value {
+  color: #059669;
+  font-weight: 600;
+}
+
+.token-details {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.token-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.token-detail span:first-child {
+  color: #6b7280;
+}
+
+.token-detail span:last-child {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.no-results {
+  text-align: center;
+  padding: 48px;
+}
+
+.no-results h3 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.no-results p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .search-form {
+    flex-direction: row;
+  }
+  
+  .search-button {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px;
+  }
+  
+  .header-title {
+    font-size: 2rem;
+  }
+  
+  .search-container {
+    padding: 24px;
+  }
+  
+  .balances-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Add this to the end of your existing CSS file */
+
+/* Transactions Section */
+.transactions-section {
+  margin-top: 32px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+.mini-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.transactions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.transaction-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #8b5cf6;
+}
+
+.transaction-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.transaction-type {
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.transaction-time {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.transaction-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.transaction-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  background: rgba(243, 244, 246, 0.8);
+  border-radius: 8px;
+}
+
+.transaction-detail span:first-child {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.transaction-detail span:last-child {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.status-success {
+  color: #10b981 !important;
+}
+
+.status-error {
+  color: #ef4444 !important;
+}
+
+.transaction-signature {
+  margin-bottom: 12px;
+}
+
+.transaction-signature > span {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.signature-hash {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: #374151;
+  background: rgba(243, 244, 246, 0.8);
+  padding: 8px 12px;
+  border-radius: 8px;
+  word-break: break-all;
+  margin-top: 4px;
+}
+
+.transaction-logs {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 12px;
+}
+
+.transaction-logs details {
+  cursor: pointer;
+}
+
+.transaction-logs summary {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 500;
+  padding: 4px 0;
+}
+
+.transaction-logs summary:hover {
+  color: #8b5cf6;
+}
+
+.log-messages {
+  margin-top: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.log-message {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #4b5563;
+  background: rgba(249, 250, 251, 0.8);
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+.no-transactions {
+  text-align: center;
+  padding: 48px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.no-transactions h3 {
+  color: #374151;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.no-transactions p {
+  color: #6b7280;
+}
+
+/* Responsive adjustments for transactions */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .transaction-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .transaction-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .transaction-detail {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .transaction-detail span:first-child {
+    font-size: 0.8rem;
+  }
+}
