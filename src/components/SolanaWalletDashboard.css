@@ -26,6 +26,22 @@
   }
 }
 
+
+/* Custom Crucifix Cursor */
+* {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32" style="fill:white;stroke:black;stroke-width:1"><rect x="10" y="2" width="4" height="20"/><rect x="6" y="8" width="12" height="4"/><rect x="10" y="22" width="4" height="8"/></svg>'), auto;
+}
+
+/* Hover states with different crucifix */
+button, .search-input, .balance-card, .transaction-card {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32" style="fill:%23dc2626;stroke:black;stroke-width:1"><rect x="10" y="2" width="4" height="20"/><rect x="6" y="8" width="12" height="4"/><rect x="10" y="22" width="4" height="8"/></svg>'), pointer;
+}
+
+/* Special cursor for links */
+a {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32" style="fill:%23dc2626;stroke:white;stroke-width:1"><rect x="10" y="2" width="4" height="20"/><rect x="6" y="8" width="12" height="4"/><rect x="10" y="22" width="4" height="8"/></svg>'), pointer;
+}
+
 .dashboard-container {
   min-height: 100vh;
   position: relative;
@@ -353,6 +369,36 @@
   text-shadow: 0 0 10px rgba(220, 38, 38, 0.4);
 }
 
+/* Show More Button Styles */
+.show-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 24px;
+}
+
+.show-more-btn {
+  padding: 12px 32px;
+  background: linear-gradient(45deg, #dc2626, #991b1b);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 2px solid #dc2626;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
+}
+
+.show-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.5);
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .portfolio-value {
@@ -402,6 +448,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
+  margin-bottom: 16px;
 }
 
 .balance-card {
