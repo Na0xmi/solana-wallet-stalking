@@ -87,6 +87,24 @@ const SolanaWalletDashboard = () => {
     return actualAmount.toLocaleString(undefined, { maximumFractionDigits: 6 });
   };
 
+  const calculateTotalValue = (balances) => {
+    if (!balances || !Array.isArray(balances)) return 0;
+    
+    return balances.reduce((total, balance) => {
+      const value = parseFloat(balance.value_usd) || 0;
+      return total + value;
+    }, 0);
+  };
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(amount);
+  };
+
   const formatTimestamp = (timestamp) => {
     // Convert microseconds to milliseconds
     const date = new Date(timestamp / 1000);
@@ -117,12 +135,13 @@ const SolanaWalletDashboard = () => {
         {/* Header */}
         <div className="header">
           <h1 className="header-title">
-            Stalk your frens on Solana 
+            Stalk your frens on Solana
           </h1>
           <div className="alucard-gif">
             <img 
-              src="https://media1.tenor.com/m/CKXAi_IRPpcAAAAC/alucard-approves.gif"
-              className="gif-image" alt="Alucard approves"
+              src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGdodm5wazYxNTZnbWoxNW03ajNjcXdsNDM4dWlscGhuMWt0YmllaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/if9niVFg4IwAE/giphy.gif" 
+              alt="Alucard Approves" 
+              className="gif-image"
             />
           </div>
         </div>
@@ -181,6 +200,30 @@ const SolanaWalletDashboard = () => {
                 {(balanceData.balances_count || balanceData.balances?.length || 0) !== 1 ? 's' : ''}
                 {balanceData.processing_time_ms && ` • Processed in ${balanceData.processing_time_ms}ms`}
               </p>
+            </div>
+
+            {/* Portfolio Value Summary */}
+            <div className="portfolio-summary">
+              <div className="portfolio-value-card">
+                <div className="portfolio-header">
+                  <h3 className="portfolio-title">💰 Total Portfolio Value</h3>
+                </div>
+                <div className="portfolio-value">
+                  {formatCurrency(calculateTotalValue(balanceData.balances))}
+                </div>
+                <div className="portfolio-stats">
+                  <div className="stat-item">
+                    <span className="stat-label">Total Tokens:</span>
+                    <span className="stat-value">{balanceData.balances?.length || 0}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Tokens with Value:</span>
+                    <span className="stat-value">
+                      {balanceData.balances?.filter(b => parseFloat(b.value_usd) > 0).length || 0}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Token Balances */}

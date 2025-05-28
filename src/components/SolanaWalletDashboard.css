@@ -93,7 +93,6 @@
   font-family: 'Nosifer', 'Georgia', serif;
 }
 
-/* Add this to your CSS file */
 .alucard-gif {
   margin-top: 16px;
   display: flex;
@@ -268,6 +267,137 @@
   margin-top: 16px;
 }
 
+
+/* Portfolio Summary Styles */
+.portfolio-summary {
+  margin-bottom: 32px;
+}
+
+.portfolio-value-card {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(0, 0, 0, 0.9));
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 32px;
+  border: 2px solid #dc2626;
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.3), 0 20px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.portfolio-header {
+  margin-bottom: 20px;
+}
+
+.portfolio-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+}
+
+.portfolio-value {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #dc2626;
+  margin-bottom: 24px;
+  text-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+  font-family: 'Georgia', serif;
+  line-height: 1;
+}
+
+.portfolio-stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 24px;
+  margin-top: 20px;
+  border-top: 1px solid rgba(220, 38, 38, 0.3);
+  padding-top: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #cccccc;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(220, 38, 38, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .portfolio-value {
+    font-size: 2.5rem;
+  }
+  
+  .portfolio-stats {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .stat-item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .portfolio-value-card {
+    padding: 24px;
+  }
+}
+
+/* Special effect for high-value portfolios */
+.portfolio-value-card.high-value {
+  animation: bloodPulse 4s ease-in-out infinite;
+}
+
+.portfolio-value-card.high-value::after {
+  content: '🔥';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.7;
+  }
+  50% { 
+    transform: scale(1.2); 
+    opacity: 1;
+  }
+}
 .balances-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
